@@ -8,7 +8,7 @@
     <p class="lead">Shorten your Long Url to a Short Url. Try it!</p>
     <form asp-action="Index">
         <div class="control-group form-group row">
-            <label class="col-md-2 col-form-label">Long URL</label>
+            <label asp-for="LongUrl" class="col-md-2 col-form-label"></label>
             <div class="col-md-10">
                 <input asp-for="LongUrl" placeholder="https://ts.my" class="form-control">
             </div>
@@ -17,7 +17,7 @@
             if (!string.IsNullOrWhiteSpace(Model.ShortUrl))
             {
                 <div class="control-group form-group row">
-                    <label class="col-md-2 col-form-label">Short URL</label>
+                    <label asp-for="ShortUrl" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
                         @Html.DisplayFor(model => model.ShortUrl)
                     </div>
