@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shortener.Models\Shortener.Models.csproj" />
+    <ProjectReference Include="..\Shortener.Services\Shortener.Services.csproj" />
   </ItemGroup>
 
 </Project>

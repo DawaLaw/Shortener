@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Shortener.Business
 {
-    public interface IShortenerFacade
+    public interface IShortenerBusiness
     {
-        Task GenerateShortUrl(UrlShortener urlShortener);
+        void VerifyUrl(UrlShortener urlShortener);
+        Task AddUrl(UrlShortener urlShortener);
     }
 }

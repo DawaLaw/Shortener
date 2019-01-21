@@ -12,12 +12,14 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\Shortener.Business\Shortener.Business.csproj" />
     <ProjectReference Include="..\Shortener.Models\Shortener.Models.csproj" />
+    <ProjectReference Include="..\Shortener.Services\Shortener.Services.csproj" />
   </ItemGroup>
 
 </Project>

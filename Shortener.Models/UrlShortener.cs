@@ -5,6 +5,8 @@ namespace Shortener.Models
 {
     public class UrlShortener
     {
+        public string UrlId { get; set; }
+
         [Url]
         [Display(Name = "Shortened URL")]
         public string ShortUrl { get; set; }

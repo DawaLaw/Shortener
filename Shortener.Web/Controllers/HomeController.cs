@@ -26,10 +26,10 @@ namespace Shortener.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(UrlShortener urlShortener)
+        public async Task<IActionResult> Index(UrlShortener urlShortener)
         {
-            _shortenerFacade.GenerateShortUrl(urlShortener);
-            urlShortener.ShortUrl = "https://localhost:53469/1234567";
+            await _shortenerFacade.GenerateShortUrl(urlShortener);
+            urlShortener.ShortUrl = "https://localhost:44317/1234567";
             return View(urlShortener);
         }
 

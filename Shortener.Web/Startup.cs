@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.WindowsAzure.Storage;
 using Shortener.Business;
+using Shortener.Services;
 
 namespace Shortener.Web
 {
@@ -37,6 +39,10 @@ namespace Shortener.Web
 
             // Add dependency injection.
             services.AddScoped<IShortenerFacade, ShortenerFacade>();
+            services.AddScoped<IShortenerBusiness, ShortenerBusiness>();
+            services.AddScoped(_ => CloudStorageAccount.Parse(Configuration.GetConnectionString("DefaultStorageConnection")));
+            services.AddScoped(provider => provider.GetService<CloudStorageAccount>().CreateCloudTableClient());
+            services.AddScoped<IRepository, ShortenerTableStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

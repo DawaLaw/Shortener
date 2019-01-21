@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shortener.Business
+namespace Shortener.Services
 {
-    public interface IShortenerFacade
+    public interface IRepository
     {
-        Task GenerateShortUrl(UrlShortener urlShortener);
+        Task AddUrl(UrlShortener urlShortener);
     }
 }
