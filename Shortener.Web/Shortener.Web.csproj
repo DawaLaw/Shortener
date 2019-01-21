@@ -16,6 +16,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\Shortener.Business\Shortener.Business.csproj" />
     <ProjectReference Include="..\Shortener.Models\Shortener.Models.csproj" />
   </ItemGroup>
 

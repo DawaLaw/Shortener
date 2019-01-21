@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shortener.Business;
 
 namespace Shortener.Web
 {
@@ -33,6 +34,9 @@ namespace Shortener.Web
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            // Add dependency injection.
+            services.AddScoped<IShortenerFacade, ShortenerFacade>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

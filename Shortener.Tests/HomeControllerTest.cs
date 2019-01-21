@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Shortener.Business;
 using Shortener.Models;
 using Shortener.Web.Controllers;
 using System;
@@ -12,7 +13,7 @@ namespace Shortener.Tests
         public void IndexPostTest_PassTest()
         {
             // Arrange
-            var controller = new HomeController();
+            var controller = new HomeController(new ShortenerFacade());
             var shortener = new UrlShortener() { LongUrl = "http://facebook.com" };
 
             // Action
