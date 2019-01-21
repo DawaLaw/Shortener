@@ -28,5 +28,15 @@ namespace Shortener.Business
             // Add to Repository
             await _shortenerBusiness.AddUrl(urlShortener);
         }
+
+        /// <summary>
+        /// Retrieve Long Url from repository.
+        /// </summary>
+        /// <param name="urlShortener"></param>
+        /// <returns>UrlShortener object with LongUrl</returns>
+        public async Task<UrlShortener> GetUrl(UrlShortener urlShortener)
+        {
+            return await _shortenerBusiness.GetUrl(urlShortener);
+        }
     }
 }

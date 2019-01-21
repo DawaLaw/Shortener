@@ -9,5 +9,6 @@ namespace Shortener.Business
     public interface IShortenerFacade
     {
         Task GenerateShortUrl(UrlShortener urlShortener);
+        Task<UrlShortener> GetUrl(UrlShortener urlShortener);
     }
 }

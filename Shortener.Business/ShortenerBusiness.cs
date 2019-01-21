@@ -52,6 +52,22 @@ namespace Shortener.Business
         }
 
         /// <summary>
+        /// Retrieve Long Url by UrlId.
+        /// </summary>
+        /// <param name="urlShortener"></param>
+        /// <returns>UrlShortener object with LongUrl</returns>
+        public async Task<UrlShortener> GetUrl(UrlShortener urlShortener)
+        {
+            var outcome = await _repository.GetUrl(urlShortener.UrlId);
+            if (outcome == null)
+            {
+                throw new Exception("Invalid Short Url provided.");
+            }
+            urlShortener = (UrlShortenerEntity)outcome;
+            return urlShortener;
+        }
+
+        /// <summary>
         /// Generate UrlId
         /// </summary>
         /// <returns>Generated UrlId</returns>

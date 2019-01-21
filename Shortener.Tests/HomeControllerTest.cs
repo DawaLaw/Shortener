@@ -18,18 +18,47 @@ namespace Shortener.Tests
             // Arrange
             var mockShortenerFacade = new Mock<IShortenerFacade>();
             var controller = PrepareController(mockShortenerFacade);
-            var shortener = new UrlShortener()
-            {
-                LongUrl = "http://facebook.com",
-                UrlId = "1234567"
-            };
 
             // Action
-            var outcome = await controller.Index(shortener);
+            var outcome = await controller.Index(MockGetLongUrlUrlId());
 
             // Assert
             var viewResult = Assert.IsType<ViewResult>(outcome);
             Assert.Equal("https://localhost:44317/1234567", ((UrlShortener)viewResult.Model).ShortUrl);
+        }
+
+        [Fact]
+        public async Task GoTest_PassTest()
+        {
+            // Arrange
+            var mockShortenerFacade = new Mock<IShortenerFacade>();
+            mockShortenerFacade.Setup(facade => facade.GetUrl(It.IsAny<UrlShortener>())).ReturnsAsync(MockGetLongUrlUrlId());
+            var controller = new HomeController(mockShortenerFacade.Object);
+
+            // Action
+            var outcome = await controller.Go("1234567");
+
+            // Assert
+            var redirectResult = Assert.IsType<RedirectResult>(outcome);
+            Assert.True(redirectResult.Permanent);
+            Assert.Equal("http://facebook.com", redirectResult.Url);
+        }
+
+        [Fact]
+        public async Task GoTest_FailTest()
+        {
+            // Arrange
+            var mockShortenerFacade = new Mock<IShortenerFacade>();
+            mockShortenerFacade.Setup(facade => facade.GetUrl(It.IsAny<UrlShortener>()))
+                .ThrowsAsync(new Exception("Invalid Short Url provided."));
+            var controller = new HomeController(mockShortenerFacade.Object);
+
+            // Action
+            var outcome = await controller.Go("1234567");
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(outcome);
+            Assert.Equal("Invalid Short Url provided.", controller.ViewBag.ErrorMessage);
         }
 
         private static HomeController PrepareController(Mock<IShortenerFacade> mockShortenerFacade)
@@ -46,6 +75,15 @@ namespace Shortener.Tests
                 HttpContext = mockContext.Object
             };
             return controller;
+        }
+
+        private static UrlShortener MockGetLongUrlUrlId()
+        {
+            return new UrlShortener
+            {
+                LongUrl = "http://facebook.com",
+                UrlId = "1234567"
+            };
         }
     }
 }

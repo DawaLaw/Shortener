@@ -7,10 +7,13 @@
     <h1 class="display-3">Url Shortener!</h1>
     <p class="lead">Shorten your Long Url to a Short Url. Try it!</p>
     <form asp-action="Index">
+        <div class="text-danger">@ViewBag.ErrorMessage</div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="control-group form-group row">
             <label asp-for="LongUrl" class="col-md-2 col-form-label"></label>
             <div class="col-md-10">
                 <input asp-for="LongUrl" placeholder="https://ts.my" class="form-control">
+                <span asp-validation-for="LongUrl" class="text-danger"></span>
             </div>
         </div>
         @{

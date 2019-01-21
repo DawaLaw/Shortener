@@ -37,6 +37,21 @@ namespace Shortener.Web.Controllers
             return View(urlShortener);
         }
 
+        public async Task<IActionResult> Go(string urlId)
+        {
+            try
+            {
+                var urlShortener = new UrlShortener() { UrlId = urlId };
+                urlShortener = await _shortenerFacade.GetUrl(urlShortener);
+                return RedirectPermanent(urlShortener.LongUrl);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
+            return View("Index", new UrlShortener());
+        }
+
         public IActionResult Privacy()
         {
             return View();
