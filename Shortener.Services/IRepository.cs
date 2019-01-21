@@ -9,5 +9,6 @@ namespace Shortener.Services
     public interface IRepository
     {
         Task AddUrl(UrlShortener urlShortener);
+        Task<object> GetUrl(string urlId);
     }
 }

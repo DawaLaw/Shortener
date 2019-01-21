@@ -22,6 +22,9 @@ namespace Shortener.Business
             // Verify if the URL exists or reacheable
             _shortenerBusiness.VerifyUrl(urlShortener);
 
+            // Generate New ID
+            urlShortener.UrlId = await _shortenerBusiness.GenerateNewUrlId();
+
             // Add to Repository
             await _shortenerBusiness.AddUrl(urlShortener);
         }

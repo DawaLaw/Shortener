@@ -10,5 +10,6 @@ namespace Shortener.Business
     {
         void VerifyUrl(UrlShortener urlShortener);
         Task AddUrl(UrlShortener urlShortener);
+        Task<string> GenerateNewUrlId();
     }
 }

@@ -28,8 +28,12 @@ namespace Shortener.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UrlShortener urlShortener)
         {
-            await _shortenerFacade.GenerateShortUrl(urlShortener);
-            urlShortener.ShortUrl = "https://localhost:44317/1234567";
+            if (ModelState.IsValid)
+            {
+                await _shortenerFacade.GenerateShortUrl(urlShortener);
+                urlShortener.ShortUrl = $"{Request.Scheme}://{Request.Host}/{urlShortener.UrlId}";
+            }
+
             return View(urlShortener);
         }
 

@@ -31,5 +31,19 @@ namespace Shortener.Services
 
             await _cloudTable.ExecuteAsync(insertOperation);
         }
+
+        /// <summary>
+        /// Retrieve Long Url from Azure Table Storage
+        /// </summary>
+        /// <param name="urlId"></param>
+        /// <returns></returns>
+        public async Task<object> GetUrl(string urlId)
+        {
+            var tableOperation = TableOperation.Retrieve<UrlShortenerEntity>(urlId.Substring(0, 1), urlId);
+
+            var retrievedResult = await _cloudTable.ExecuteAsync(tableOperation);
+
+            return retrievedResult.Result;
+        }
     }
 }
