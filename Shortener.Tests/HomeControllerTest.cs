@@ -28,6 +28,25 @@ namespace Shortener.Tests
         }
 
         [Fact]
+        public async Task IndexPostTest_FailTest()
+        {
+            // Arrange
+            var urlShortener = MockGetLongUrlUrlId();
+            var mockShortenerFacade = new Mock<IShortenerFacade>();
+            mockShortenerFacade.Setup(facade => facade.GenerateShortUrl(It.IsAny<UrlShortener>()))
+                .ThrowsAsync(new Exception("Url is invalid or unreacheable."));
+            var controller = PrepareController(mockShortenerFacade);
+
+            // Action
+            var outcome = await controller.Index(urlShortener);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(outcome);
+            Assert.Equal(urlShortener, ((UrlShortener)viewResult.Model));
+            Assert.Equal("Url is invalid or unreacheable.", controller.ViewBag.ErrorMessage);
+        }
+
+        [Fact]
         public async Task GoTest_PassTest()
         {
             // Arrange

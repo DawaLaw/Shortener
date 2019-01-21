@@ -21,7 +21,10 @@ namespace Shortener.Business
         /// <param name="urlShortener"></param>
         public void VerifyUrl(UrlShortener urlShortener)
         {
-
+            if (!IsValidUrl(urlShortener.LongUrl) || !WebCheckService.IsUrlReacheable(urlShortener.LongUrl))
+            {
+                throw new Exception("Url is invalid or unreacheable.");
+            }
         }
 
         /// <summary>
@@ -75,6 +78,17 @@ namespace Shortener.Business
         {
             // TODO: To rethink a way to generate ID.
             return Guid.NewGuid().ToString().Substring(0, 7);
+        }
+
+        /// <summary>
+        /// Verify if the provided url is valid.
+        /// </summary>
+        /// <param name="url">The provided Url</param>
+        /// <returns>IsValid</returns>
+        protected virtual bool IsValidUrl(string url)
+        {
+            return Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
     }
 }
