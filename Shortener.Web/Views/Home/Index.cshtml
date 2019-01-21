@@ -1,15 +1,29 @@
-﻿@{
+﻿@model UrlShortener
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <header class="jumbotron my-4">
     <h1 class="display-3">Url Shortener!</h1>
     <p class="lead">Shorten your Long Url to a Short Url. Try it!</p>
-    <div class="control-group form-group row">
-        <label class="col-md-2 col-form-label">Long URL</label>
-        <div class="col-md-10">
-            <input type="text" placeholder="https://ts.my" class="form-control">
+    <form asp-action="Index">
+        <div class="control-group form-group row">
+            <label class="col-md-2 col-form-label">Long URL</label>
+            <div class="col-md-10">
+                <input asp-for="LongUrl" placeholder="https://ts.my" class="form-control">
+            </div>
         </div>
-    </div>
-    <a href="#" class="btn btn-primary btn-lg">Shorten!</a>
+        @{
+            if (!string.IsNullOrWhiteSpace(Model.ShortUrl))
+            {
+                <div class="control-group form-group row">
+                    <label class="col-md-2 col-form-label">Short URL</label>
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.ShortUrl)
+                    </div>
+                </div>
+            }
+        }
+        <input type="submit" value="Shorten!" class="btn btn-primary btn-lg" />
+    </form>
 </header>

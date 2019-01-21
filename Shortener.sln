@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shortener.Web", "Shortener.Web\Shortener.Web.csproj", "{A52370E5-03CD-48E5-8526-886667011D29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shortener.Web", "Shortener.Web\Shortener.Web.csproj", "{A52370E5-03CD-48E5-8526-886667011D29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shortener.Tests", "Shortener.Tests\Shortener.Tests.csproj", "{29050F2C-D88A-4193-A06F-6EC4AE85DA64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shortener.Tests", "Shortener.Tests\Shortener.Tests.csproj", "{29050F2C-D88A-4193-A06F-6EC4AE85DA64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shortener.Models", "Shortener.Models\Shortener.Models.csproj", "{2ECE9C7B-B82B-4221-A92F-5F4ED4BCCA99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{29050F2C-D88A-4193-A06F-6EC4AE85DA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29050F2C-D88A-4193-A06F-6EC4AE85DA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29050F2C-D88A-4193-A06F-6EC4AE85DA64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ECE9C7B-B82B-4221-A92F-5F4ED4BCCA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ECE9C7B-B82B-4221-A92F-5F4ED4BCCA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ECE9C7B-B82B-4221-A92F-5F4ED4BCCA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ECE9C7B-B82B-4221-A92F-5F4ED4BCCA99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

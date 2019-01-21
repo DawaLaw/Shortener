@@ -4,15 +4,24 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Shortener.Models;
 using Shortener.Web.Models;
 
 namespace Shortener.Web.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View(new UrlShortener());
+        }
+
+        [HttpPost]
+        public IActionResult Index(UrlShortener urlShortener)
+        {
+            urlShortener.ShortUrl = "https://localhost:53469/1234567";
+            return View(urlShortener);
         }
 
         public IActionResult Privacy()
